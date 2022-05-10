@@ -8,4 +8,5 @@ Program to assist with setting up a camera for off-axis holographic imaging. All
 - Camera parameters to be saved to a txt file so that the set up camera can be used by other CamLab programs. An example of such a text file is included. CamLab programs need to point to all point to the same text file.
 
 Tip: To set a region of interest, click-and-drag on the image.
+Tip: If FFTW.NET throws an error, uninstall it and reinstall it using the NuGet package manager.
 
