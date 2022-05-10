@@ -1,0 +1,15 @@
+Image Viewport x	444
+Image Viewport y	324
+Image Viewport width	380
+Image Viewport height	380
+Image padded width	0
+FFT Viewport x	227
+FFT Viewport y	230
+FFT Viewport width	62
+FFT Viewport height	62
+FFT padded width	0
+Exposure	50
+Thorlabs Camera
+Camera ID	1
+Trigger Mode	1
+SLM Clock Port = 	Nothing

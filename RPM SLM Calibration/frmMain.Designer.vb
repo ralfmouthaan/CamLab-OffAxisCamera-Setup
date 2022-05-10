@@ -60,7 +60,6 @@ Partial Class frmMain
         Me.nudImagePaddedWidth = New System.Windows.Forms.NumericUpDown()
         Me.lblImagePaddedWidth = New System.Windows.Forms.Label()
         Me.picImagebox = New RPM_SLM_Calibration.ctrlComplexImagebox()
-        Me.cmdDualCapture = New System.Windows.Forms.Button()
         Me.grpbxCameraProperties.SuspendLayout()
         CType(Me.nudCameraID, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nudExposure, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -86,7 +85,7 @@ Partial Class frmMain
         Me.grpbxCameraProperties.Controls.Add(Me.chkCameraActive)
         Me.grpbxCameraProperties.Controls.Add(Me.nudExposure)
         Me.grpbxCameraProperties.Controls.Add(Me.cmdExposure)
-        Me.grpbxCameraProperties.Location = New System.Drawing.Point(859, 118)
+        Me.grpbxCameraProperties.Location = New System.Drawing.Point(860, 118)
         Me.grpbxCameraProperties.Name = "grpbxCameraProperties"
         Me.grpbxCameraProperties.Size = New System.Drawing.Size(323, 165)
         Me.grpbxCameraProperties.TabIndex = 1
@@ -334,7 +333,7 @@ Partial Class frmMain
         Me.grpbxCamera.Controls.Add(Me.radInputCamera)
         Me.grpbxCamera.Controls.Add(Me.radOutputCameraPol2)
         Me.grpbxCamera.Controls.Add(Me.radOutputCameraPol1)
-        Me.grpbxCamera.Location = New System.Drawing.Point(859, 12)
+        Me.grpbxCamera.Location = New System.Drawing.Point(860, 12)
         Me.grpbxCamera.Name = "grpbxCamera"
         Me.grpbxCamera.Size = New System.Drawing.Size(323, 100)
         Me.grpbxCamera.TabIndex = 4
@@ -347,7 +346,7 @@ Partial Class frmMain
         Me.grpbxPlane.Controls.Add(Me.radComplexCameraImage)
         Me.grpbxPlane.Controls.Add(Me.radFFTCameraImage)
         Me.grpbxPlane.Controls.Add(Me.radCameraImage)
-        Me.grpbxPlane.Location = New System.Drawing.Point(859, 368)
+        Me.grpbxPlane.Location = New System.Drawing.Point(860, 368)
         Me.grpbxPlane.Name = "grpbxPlane"
         Me.grpbxPlane.Size = New System.Drawing.Size(323, 91)
         Me.grpbxPlane.TabIndex = 5
@@ -357,13 +356,12 @@ Partial Class frmMain
         'grpbxImageCapture
         '
         Me.grpbxImageCapture.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.grpbxImageCapture.Controls.Add(Me.cmdDualCapture)
         Me.grpbxImageCapture.Controls.Add(Me.cmdStopContinuous)
         Me.grpbxImageCapture.Controls.Add(Me.cmdStartContinuous)
         Me.grpbxImageCapture.Controls.Add(Me.cmdSingleCapture)
-        Me.grpbxImageCapture.Location = New System.Drawing.Point(859, 465)
+        Me.grpbxImageCapture.Location = New System.Drawing.Point(860, 465)
         Me.grpbxImageCapture.Name = "grpbxImageCapture"
-        Me.grpbxImageCapture.Size = New System.Drawing.Size(323, 114)
+        Me.grpbxImageCapture.Size = New System.Drawing.Size(323, 82)
         Me.grpbxImageCapture.TabIndex = 6
         Me.grpbxImageCapture.TabStop = False
         Me.grpbxImageCapture.Text = "Image Capture"
@@ -410,7 +408,7 @@ Partial Class frmMain
         Me.grpbxSave.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.grpbxSave.Controls.Add(Me.cmdSaveCamera)
         Me.grpbxSave.Controls.Add(Me.cmdLoadCamera)
-        Me.grpbxSave.Location = New System.Drawing.Point(859, 585)
+        Me.grpbxSave.Location = New System.Drawing.Point(860, 553)
         Me.grpbxSave.Name = "grpbxSave"
         Me.grpbxSave.Size = New System.Drawing.Size(323, 60)
         Me.grpbxSave.TabIndex = 7
@@ -424,7 +422,7 @@ Partial Class frmMain
         Me.grpbxFFT.Controls.Add(Me.lblFFTPaddedWidth)
         Me.grpbxFFT.Controls.Add(Me.nudImagePaddedWidth)
         Me.grpbxFFT.Controls.Add(Me.lblImagePaddedWidth)
-        Me.grpbxFFT.Location = New System.Drawing.Point(859, 289)
+        Me.grpbxFFT.Location = New System.Drawing.Point(860, 289)
         Me.grpbxFFT.Name = "grpbxFFT"
         Me.grpbxFFT.Size = New System.Drawing.Size(323, 73)
         Me.grpbxFFT.TabIndex = 8
@@ -479,24 +477,15 @@ Partial Class frmMain
         Me.picImagebox.Data = Nothing
         Me.picImagebox.Location = New System.Drawing.Point(12, 12)
         Me.picImagebox.Name = "picImagebox"
-        Me.picImagebox.Size = New System.Drawing.Size(841, 678)
+        Me.picImagebox.Size = New System.Drawing.Size(842, 464)
         Me.picImagebox.TabIndex = 0
         Me.picImagebox.Viewport = New System.Drawing.Rectangle(0, 0, 0, 0)
-        '
-        'cmdDualCapture
-        '
-        Me.cmdDualCapture.Location = New System.Drawing.Point(102, 79)
-        Me.cmdDualCapture.Name = "cmdDualCapture"
-        Me.cmdDualCapture.Size = New System.Drawing.Size(111, 25)
-        Me.cmdDualCapture.TabIndex = 3
-        Me.cmdDualCapture.Text = "Dual Camera Save"
-        Me.cmdDualCapture.UseVisualStyleBackColor = True
         '
         'frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1194, 749)
+        Me.ClientSize = New System.Drawing.Size(1195, 623)
         Me.Controls.Add(Me.grpbxFFT)
         Me.Controls.Add(Me.grpbxSave)
         Me.Controls.Add(Me.grpbxImageCapture)
@@ -562,5 +551,4 @@ Partial Class frmMain
     Friend WithEvents lblImagePaddedWidth As Label
     Friend WithEvents nudFFTPaddedWidth As NumericUpDown
     Friend WithEvents lblFFTPaddedWidth As Label
-    Friend WithEvents cmdDualCapture As Button
 End Class

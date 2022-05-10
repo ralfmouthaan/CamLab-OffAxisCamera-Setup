@@ -110,31 +110,6 @@ Public Class frmMain
     Private Sub cmdStopContinuous_Click(sender As Object, e As EventArgs) Handles cmdStopContinuous.Click
         bolContinuousCapture = False
     End Sub
-    Private Sub cmdDualCapture_Click(sender As Object, e As EventArgs) Handles cmdDualCapture.Click
-
-        Dim dlg As New SaveFileDialog
-        Dim Img1(,) As Numerics.Complex
-        Dim Img2(,) As Numerics.Complex
-
-        If dlg.ShowDialog <> vbOK Then Exit Sub
-        If dlg.FileName = "" Then Exit Sub
-
-        DisableControls()
-        MeasurementSetup.OutputCameraPol1.Startup()
-        MeasurementSetup.OutputCameraPol2.Startup()
-
-        Img1 = MeasurementSetup.OutputCameraPol1.GetOffAxisComplexImage() 'Sometimes first image is junk.
-        Img2 = MeasurementSetup.OutputCameraPol2.GetOffAxisComplexImage() 'Sometimes first image is junk.
-        Img1 = MeasurementSetup.OutputCameraPol1.GetOffAxisComplexImage()
-        Img2 = MeasurementSetup.OutputCameraPol2.GetOffAxisComplexImage()
-
-        ImageProcessing.SaveImgToFile(Img1, dlg.FileName.Replace(".txt", "") + " - Pol 1.txt")
-        ImageProcessing.SaveImgToFile(Img2, dlg.FileName.Replace(".txt", "") + " - Pol 2.txt")
-
-        ActiveCamera.Shutdown()
-        EnableControls()
-
-    End Sub
 #End Region
 
 #Region "Enable + Disable Controls"
