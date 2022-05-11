@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.645
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "RPM SLM Calibration", "RPM SLM Calibration\RPM SLM Calibration.vbproj", "{FD0C0101-191B-4EFF-A3B8-86C6CFE6D7F2}"
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "CamLab-OffAxisCamera-Setup", "RPM SLM Calibration\CamLab-OffAxisCamera-Setup.vbproj", "{FD0C0101-191B-4EFF-A3B8-86C6CFE6D7F2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
