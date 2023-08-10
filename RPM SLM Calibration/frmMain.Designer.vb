@@ -26,8 +26,6 @@ Partial Class frmMain
         Me.cmdAutoExposure = New System.Windows.Forms.Button()
         Me.cmbArduinoPort = New System.Windows.Forms.ComboBox()
         Me.lblArduinoPort = New System.Windows.Forms.Label()
-        Me.nudCameraID = New System.Windows.Forms.NumericUpDown()
-        Me.lblCameraID = New System.Windows.Forms.Label()
         Me.cmbTriggerMode = New System.Windows.Forms.ComboBox()
         Me.lblTriggerMode = New System.Windows.Forms.Label()
         Me.chkCameraActive = New System.Windows.Forms.CheckBox()
@@ -59,9 +57,12 @@ Partial Class frmMain
         Me.lblFFTPaddedWidth = New System.Windows.Forms.Label()
         Me.nudImagePaddedWidth = New System.Windows.Forms.NumericUpDown()
         Me.lblImagePaddedWidth = New System.Windows.Forms.Label()
+        Me.lblCameraID = New System.Windows.Forms.Label()
+        Me.nudCameraID = New System.Windows.Forms.NumericUpDown()
+        Me.nudGain = New System.Windows.Forms.NumericUpDown()
+        Me.lblGain = New System.Windows.Forms.Label()
         Me.picImagebox = New RPM_SLM_Calibration.ctrlComplexImagebox()
         Me.grpbxCameraProperties.SuspendLayout()
-        CType(Me.nudCameraID, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nudExposure, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grpbxCamera.SuspendLayout()
         Me.grpbxPlane.SuspendLayout()
@@ -70,11 +71,15 @@ Partial Class frmMain
         Me.grpbxFFT.SuspendLayout()
         CType(Me.nudFFTPaddedWidth, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nudImagePaddedWidth, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.nudCameraID, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.nudGain, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'grpbxCameraProperties
         '
         Me.grpbxCameraProperties.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.grpbxCameraProperties.Controls.Add(Me.nudGain)
+        Me.grpbxCameraProperties.Controls.Add(Me.lblGain)
         Me.grpbxCameraProperties.Controls.Add(Me.cmdAutoExposure)
         Me.grpbxCameraProperties.Controls.Add(Me.cmbArduinoPort)
         Me.grpbxCameraProperties.Controls.Add(Me.lblArduinoPort)
@@ -85,16 +90,16 @@ Partial Class frmMain
         Me.grpbxCameraProperties.Controls.Add(Me.chkCameraActive)
         Me.grpbxCameraProperties.Controls.Add(Me.nudExposure)
         Me.grpbxCameraProperties.Controls.Add(Me.cmdExposure)
-        Me.grpbxCameraProperties.Location = New System.Drawing.Point(860, 118)
+        Me.grpbxCameraProperties.Location = New System.Drawing.Point(858, 118)
         Me.grpbxCameraProperties.Name = "grpbxCameraProperties"
-        Me.grpbxCameraProperties.Size = New System.Drawing.Size(323, 165)
+        Me.grpbxCameraProperties.Size = New System.Drawing.Size(323, 188)
         Me.grpbxCameraProperties.TabIndex = 1
         Me.grpbxCameraProperties.TabStop = False
         Me.grpbxCameraProperties.Text = "Setup"
         '
         'cmdAutoExposure
         '
-        Me.cmdAutoExposure.Location = New System.Drawing.Point(219, 74)
+        Me.cmdAutoExposure.Location = New System.Drawing.Point(219, 77)
         Me.cmdAutoExposure.Name = "cmdAutoExposure"
         Me.cmdAutoExposure.Size = New System.Drawing.Size(75, 23)
         Me.cmdAutoExposure.TabIndex = 9
@@ -105,7 +110,7 @@ Partial Class frmMain
         '
         Me.cmbArduinoPort.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbArduinoPort.FormattingEnabled = True
-        Me.cmbArduinoPort.Location = New System.Drawing.Point(93, 130)
+        Me.cmbArduinoPort.Location = New System.Drawing.Point(93, 161)
         Me.cmbArduinoPort.Name = "cmbArduinoPort"
         Me.cmbArduinoPort.Size = New System.Drawing.Size(121, 21)
         Me.cmbArduinoPort.TabIndex = 8
@@ -113,37 +118,18 @@ Partial Class frmMain
         'lblArduinoPort
         '
         Me.lblArduinoPort.AutoSize = True
-        Me.lblArduinoPort.Location = New System.Drawing.Point(19, 133)
+        Me.lblArduinoPort.Location = New System.Drawing.Point(19, 164)
         Me.lblArduinoPort.Name = "lblArduinoPort"
         Me.lblArduinoPort.Size = New System.Drawing.Size(68, 13)
         Me.lblArduinoPort.TabIndex = 7
         Me.lblArduinoPort.Text = "Arduino Port:"
-        '
-        'nudCameraID
-        '
-        Me.nudCameraID.Location = New System.Drawing.Point(93, 51)
-        Me.nudCameraID.Maximum = New Decimal(New Integer() {5, 0, 0, 0})
-        Me.nudCameraID.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
-        Me.nudCameraID.Name = "nudCameraID"
-        Me.nudCameraID.Size = New System.Drawing.Size(120, 20)
-        Me.nudCameraID.TabIndex = 6
-        Me.nudCameraID.Value = New Decimal(New Integer() {1, 0, 0, 0})
-        '
-        'lblCameraID
-        '
-        Me.lblCameraID.AutoSize = True
-        Me.lblCameraID.Location = New System.Drawing.Point(27, 51)
-        Me.lblCameraID.Name = "lblCameraID"
-        Me.lblCameraID.Size = New System.Drawing.Size(60, 13)
-        Me.lblCameraID.TabIndex = 5
-        Me.lblCameraID.Text = "Camera ID:"
         '
         'cmbTriggerMode
         '
         Me.cmbTriggerMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbTriggerMode.FormattingEnabled = True
         Me.cmbTriggerMode.Items.AddRange(New Object() {"Free Run", "Hirose", "Arduino"})
-        Me.cmbTriggerMode.Location = New System.Drawing.Point(93, 103)
+        Me.cmbTriggerMode.Location = New System.Drawing.Point(93, 134)
         Me.cmbTriggerMode.Name = "cmbTriggerMode"
         Me.cmbTriggerMode.Size = New System.Drawing.Size(120, 21)
         Me.cmbTriggerMode.TabIndex = 4
@@ -151,7 +137,7 @@ Partial Class frmMain
         'lblTriggerMode
         '
         Me.lblTriggerMode.AutoSize = True
-        Me.lblTriggerMode.Location = New System.Drawing.Point(15, 106)
+        Me.lblTriggerMode.Location = New System.Drawing.Point(15, 137)
         Me.lblTriggerMode.Name = "lblTriggerMode"
         Me.lblTriggerMode.Size = New System.Drawing.Size(73, 13)
         Me.lblTriggerMode.TabIndex = 3
@@ -172,6 +158,7 @@ Partial Class frmMain
         Me.nudExposure.DecimalPlaces = 2
         Me.nudExposure.Increment = New Decimal(New Integer() {1, 0, 0, 131072})
         Me.nudExposure.Location = New System.Drawing.Point(93, 77)
+        Me.nudExposure.Maximum = New Decimal(New Integer() {10000, 0, 0, 0})
         Me.nudExposure.Minimum = New Decimal(New Integer() {1, 0, 0, 131072})
         Me.nudExposure.Name = "nudExposure"
         Me.nudExposure.Size = New System.Drawing.Size(120, 20)
@@ -333,7 +320,7 @@ Partial Class frmMain
         Me.grpbxCamera.Controls.Add(Me.radInputCamera)
         Me.grpbxCamera.Controls.Add(Me.radOutputCameraPol2)
         Me.grpbxCamera.Controls.Add(Me.radOutputCameraPol1)
-        Me.grpbxCamera.Location = New System.Drawing.Point(860, 12)
+        Me.grpbxCamera.Location = New System.Drawing.Point(858, 12)
         Me.grpbxCamera.Name = "grpbxCamera"
         Me.grpbxCamera.Size = New System.Drawing.Size(323, 100)
         Me.grpbxCamera.TabIndex = 4
@@ -346,7 +333,7 @@ Partial Class frmMain
         Me.grpbxPlane.Controls.Add(Me.radComplexCameraImage)
         Me.grpbxPlane.Controls.Add(Me.radFFTCameraImage)
         Me.grpbxPlane.Controls.Add(Me.radCameraImage)
-        Me.grpbxPlane.Location = New System.Drawing.Point(860, 368)
+        Me.grpbxPlane.Location = New System.Drawing.Point(858, 466)
         Me.grpbxPlane.Name = "grpbxPlane"
         Me.grpbxPlane.Size = New System.Drawing.Size(323, 91)
         Me.grpbxPlane.TabIndex = 5
@@ -359,7 +346,7 @@ Partial Class frmMain
         Me.grpbxImageCapture.Controls.Add(Me.cmdStopContinuous)
         Me.grpbxImageCapture.Controls.Add(Me.cmdStartContinuous)
         Me.grpbxImageCapture.Controls.Add(Me.cmdSingleCapture)
-        Me.grpbxImageCapture.Location = New System.Drawing.Point(860, 465)
+        Me.grpbxImageCapture.Location = New System.Drawing.Point(858, 563)
         Me.grpbxImageCapture.Name = "grpbxImageCapture"
         Me.grpbxImageCapture.Size = New System.Drawing.Size(323, 82)
         Me.grpbxImageCapture.TabIndex = 6
@@ -408,7 +395,7 @@ Partial Class frmMain
         Me.grpbxSave.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.grpbxSave.Controls.Add(Me.cmdSaveCamera)
         Me.grpbxSave.Controls.Add(Me.cmdLoadCamera)
-        Me.grpbxSave.Location = New System.Drawing.Point(860, 553)
+        Me.grpbxSave.Location = New System.Drawing.Point(858, 651)
         Me.grpbxSave.Name = "grpbxSave"
         Me.grpbxSave.Size = New System.Drawing.Size(323, 60)
         Me.grpbxSave.TabIndex = 7
@@ -422,7 +409,7 @@ Partial Class frmMain
         Me.grpbxFFT.Controls.Add(Me.lblFFTPaddedWidth)
         Me.grpbxFFT.Controls.Add(Me.nudImagePaddedWidth)
         Me.grpbxFFT.Controls.Add(Me.lblImagePaddedWidth)
-        Me.grpbxFFT.Location = New System.Drawing.Point(860, 289)
+        Me.grpbxFFT.Location = New System.Drawing.Point(858, 387)
         Me.grpbxFFT.Name = "grpbxFFT"
         Me.grpbxFFT.Size = New System.Drawing.Size(323, 73)
         Me.grpbxFFT.TabIndex = 8
@@ -464,6 +451,45 @@ Partial Class frmMain
         Me.lblImagePaddedWidth.TabIndex = 5
         Me.lblImagePaddedWidth.Text = "Image Padded Width:"
         '
+        'lblCameraID
+        '
+        Me.lblCameraID.AutoSize = True
+        Me.lblCameraID.Location = New System.Drawing.Point(27, 51)
+        Me.lblCameraID.Name = "lblCameraID"
+        Me.lblCameraID.Size = New System.Drawing.Size(60, 13)
+        Me.lblCameraID.TabIndex = 5
+        Me.lblCameraID.Text = "Camera ID:"
+        '
+        'nudCameraID
+        '
+        Me.nudCameraID.Location = New System.Drawing.Point(93, 51)
+        Me.nudCameraID.Maximum = New Decimal(New Integer() {5, 0, 0, 0})
+        Me.nudCameraID.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
+        Me.nudCameraID.Name = "nudCameraID"
+        Me.nudCameraID.Size = New System.Drawing.Size(120, 20)
+        Me.nudCameraID.TabIndex = 6
+        Me.nudCameraID.Value = New Decimal(New Integer() {1, 0, 0, 0})
+        '
+        'nudGain
+        '
+        Me.nudGain.DecimalPlaces = 2
+        Me.nudGain.Increment = New Decimal(New Integer() {1, 0, 0, 131072})
+        Me.nudGain.Location = New System.Drawing.Point(93, 103)
+        Me.nudGain.Maximum = New Decimal(New Integer() {20, 0, 0, 0})
+        Me.nudGain.Name = "nudGain"
+        Me.nudGain.Size = New System.Drawing.Size(120, 20)
+        Me.nudGain.TabIndex = 11
+        Me.nudGain.Value = New Decimal(New Integer() {1, 0, 0, 131072})
+        '
+        'lblGain
+        '
+        Me.lblGain.AutoSize = True
+        Me.lblGain.Location = New System.Drawing.Point(55, 105)
+        Me.lblGain.Name = "lblGain"
+        Me.lblGain.Size = New System.Drawing.Size(32, 13)
+        Me.lblGain.TabIndex = 10
+        Me.lblGain.Text = "Gain:"
+        '
         'picImagebox
         '
         Me.picImagebox.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
@@ -477,7 +503,7 @@ Partial Class frmMain
         Me.picImagebox.Data = Nothing
         Me.picImagebox.Location = New System.Drawing.Point(12, 12)
         Me.picImagebox.Name = "picImagebox"
-        Me.picImagebox.Size = New System.Drawing.Size(842, 464)
+        Me.picImagebox.Size = New System.Drawing.Size(840, 564)
         Me.picImagebox.TabIndex = 0
         Me.picImagebox.Viewport = New System.Drawing.Rectangle(0, 0, 0, 0)
         '
@@ -485,7 +511,7 @@ Partial Class frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1195, 623)
+        Me.ClientSize = New System.Drawing.Size(1193, 723)
         Me.Controls.Add(Me.grpbxFFT)
         Me.Controls.Add(Me.grpbxSave)
         Me.Controls.Add(Me.grpbxImageCapture)
@@ -497,7 +523,6 @@ Partial Class frmMain
         Me.Text = "RPM Camera Setup"
         Me.grpbxCameraProperties.ResumeLayout(False)
         Me.grpbxCameraProperties.PerformLayout()
-        CType(Me.nudCameraID, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.nudExposure, System.ComponentModel.ISupportInitialize).EndInit()
         Me.grpbxCamera.ResumeLayout(False)
         Me.grpbxCamera.PerformLayout()
@@ -509,6 +534,8 @@ Partial Class frmMain
         Me.grpbxFFT.PerformLayout()
         CType(Me.nudFFTPaddedWidth, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.nudImagePaddedWidth, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.nudCameraID, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.nudGain, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -539,8 +566,6 @@ Partial Class frmMain
     Friend WithEvents cmdExposure As Label
     Friend WithEvents cmbArduinoPort As ComboBox
     Friend WithEvents lblArduinoPort As Label
-    Friend WithEvents nudCameraID As NumericUpDown
-    Friend WithEvents lblCameraID As Label
     Friend WithEvents cmbTriggerMode As ComboBox
     Friend WithEvents lblTriggerMode As Label
     Friend WithEvents chkCameraActive As CheckBox
@@ -551,4 +576,8 @@ Partial Class frmMain
     Friend WithEvents lblImagePaddedWidth As Label
     Friend WithEvents nudFFTPaddedWidth As NumericUpDown
     Friend WithEvents lblFFTPaddedWidth As Label
+    Friend WithEvents nudCameraID As NumericUpDown
+    Friend WithEvents lblCameraID As Label
+    Friend WithEvents nudGain As NumericUpDown
+    Friend WithEvents lblGain As Label
 End Class

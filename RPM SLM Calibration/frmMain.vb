@@ -9,7 +9,7 @@ Imports System.ComponentModel
 
 Public Class frmMain
 
-    Private ActiveCamera As clsThorlabsCamDC
+    Private ActiveCamera As clsBlackflyCam
 
 #Region "Startup + Shutdown"
     Private Sub frmMain_Shown(sender As Object, e As EventArgs) Handles MyBase.Shown
@@ -142,6 +142,7 @@ Public Class frmMain
             nudCameraID.Enabled = False
             cmbTriggerMode.Enabled = False
             nudExposure.Enabled = False
+            nudGain.Enabled = False
             cmdAutoExposure.Enabled = False
             cmbArduinoPort.Enabled = False
             grpbxPlane.Enabled = False
@@ -151,6 +152,7 @@ Public Class frmMain
             nudCameraID.Enabled = True
             cmbTriggerMode.Enabled = True
             nudExposure.Enabled = True
+            nudGain.Enabled = True
             chkCameraActive.Checked = True
             cmdAutoExposure.Enabled = True
             If ActiveCamera.intTriggerMode = 2 Then
@@ -202,7 +204,6 @@ Public Class frmMain
     Private Sub ArduinoCommPortChanged(sender As Object, e As EventArgs) Handles cmbArduinoPort.SelectedValueChanged
 
         If MeasurementSetup Is Nothing Then Exit Sub
-        MeasurementSetup.SLMClock = New IO.Ports.SerialPort(cmbArduinoPort.SelectedItem.ToString)
 
     End Sub
     Private Sub ActiveCameraChanged(sender As Object, e As EventArgs) Handles _
@@ -226,9 +227,7 @@ Public Class frmMain
         nudCameraID.Value = ActiveCamera.intCameraID
         cmbTriggerMode.SelectedIndex = ActiveCamera.intTriggerMode
         nudExposure.Value = CDec(ActiveCamera.Exposure)
-        If cmbTriggerMode.SelectedIndex = 2 Then
-            cmbArduinoPort.SelectedValue = ActiveCamera.portSLMClock.PortName
-        End If
+        nudGain.Value = CDec(ActiveCamera.Gain)
         chkCameraActive.Checked = ActiveCamera.bolActive
         nudFFTPaddedWidth.Value = CDec(ActiveCamera.FFTPaddedWidth)
         nudImagePaddedWidth.Value = CDec(ActiveCamera.ImagePaddedWidth)
@@ -271,6 +270,13 @@ Public Class frmMain
         picImagebox.Visible = False
         nudExposure.ForeColor = Color.Black
     End Sub
+    Private Sub nudGain_ValueChanged(sender As Object, e As EventArgs) Handles nudGain.ValueChanged
+        If MeasurementSetup Is Nothing Then Exit Sub
+        ActiveCamera.Gain = nudGain.Value
+        picImagebox.Data = Nothing
+        picImagebox.Visible = Nothing
+        nudGain.ForeColor = Color.Black
+    End Sub
     Private Sub ViewportChanged() Handles picImagebox.ViewPortChanged
 
         If ActiveCamera Is Nothing Then Exit Sub
@@ -284,7 +290,9 @@ Public Class frmMain
     End Sub
     Private Sub cmdAutoExposure_Click(sender As Object, e As EventArgs) Handles cmdAutoExposure.Click
 
-        ActiveCamera.Exposure = 6.86
+        ActiveCamera.Startup()
+
+        ActiveCamera.Exposure = 50
 
         Dim Img(,) As Integer
         Dim max As Integer
@@ -302,11 +310,11 @@ Public Class frmMain
             If max >= 180 Then
                 Exit While
             Else
-                ActiveCamera.Exposure += 6.86
+                ActiveCamera.Exposure += 50
             End If
 
-            If ActiveCamera.Exposure > 100 Then
-                ActiveCamera.Exposure = 100
+            If ActiveCamera.Exposure > 10000 Then
+                ActiveCamera.Exposure = 10000
                 Exit While
             End If
 
@@ -324,13 +332,13 @@ Public Class frmMain
     Private Sub cmdSave_Click(sender As Object, e As EventArgs) Handles cmdSaveCamera.Click
 
         If MeasurementSetup.InputCamera IsNot Nothing AndAlso MeasurementSetup.InputCamera.bolActive = True Then
-            MeasurementSetup.InputCamera.Save("D:\RPM Data Files\Input Camera.txt")
+            MeasurementSetup.InputCamera.Save("C:\Instrument Setup\Input Camera.txt")
         End If
         If MeasurementSetup.OutputCameraPol1 IsNot Nothing AndAlso MeasurementSetup.OutputCameraPol1.bolActive = True Then
-            MeasurementSetup.OutputCameraPol1.Save("D:\RPM Data Files\Output Camera Pol 1.txt")
+            MeasurementSetup.OutputCameraPol1.Save("C:\Instrument Setup\Output Camera Pol 1.txt")
         End If
         If MeasurementSetup.OutputCameraPol2 IsNot Nothing AndAlso MeasurementSetup.OutputCameraPol2.bolActive = True Then
-            MeasurementSetup.OutputCameraPol2.Save("D:\RPM Data Files\Output Camera Pol 2.txt")
+            MeasurementSetup.OutputCameraPol2.Save("C:\Instrument Setup\Output Camera Pol 2.txt")
         End If
 
     End Sub
